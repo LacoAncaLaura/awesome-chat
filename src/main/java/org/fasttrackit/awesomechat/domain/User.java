@@ -16,6 +16,7 @@ public class User {
     private String name;
     @NotNull
     private int age;
+    @NotNull
     private double gender;
     private String imageURL;
 
