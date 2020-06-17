@@ -1,4 +1,4 @@
-package com.example.awesomechat;
+package org.fasttrackit.awesomechat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
