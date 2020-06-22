@@ -1,9 +1,6 @@
 package org.fasttrackit.awesomechat.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -11,6 +8,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(unique = true)
     private String loginName;
     @NotNull
     private String name;
@@ -19,6 +18,15 @@ public class User {
     @NotNull
     private double gender;
     private String imageURL;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getLoginName() {
         return loginName;
@@ -63,7 +71,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "loginName='" + loginName + '\'' +
+                "id=" + id +
+                ", loginName='" + loginName + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
