@@ -37,5 +37,13 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User" + id + "not found"));
 
     }
-
+    public User updateUser(long id, SaveUserRequest request){
+        log.info("Updating userAccount{}: {}", id , request);
+        User user = getUser(id);
+        return userRepository.save(user);
+    }
+    public void deleteUser(long id){
+        log.info("Deleting product{}" , id);
+        userRepository.deleteById(id);
+    }
 }

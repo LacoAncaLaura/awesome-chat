@@ -22,7 +22,9 @@ class AwesomeChatApplicationTests {
     private UserService userService;
 
     @Test
-    void createUser_whenValidRequest_thenReturnCreatedProduct() {createUser(); }
+    void createUser_whenValidRequest_thenReturnCreatedProduct() {
+        createUser();
+    }
 
     private User createUser() {
         SaveUserRequest request = new SaveUserRequest();
@@ -43,6 +45,12 @@ class AwesomeChatApplicationTests {
     }
 
     @Test
+    void getUser_whenExistingAccount_thenReturnAccount() {
+        User user = createUser();
+        User response = userService.getUser(user.getId());
+    }
+
+    @Test
     void createUser_whenMissingMandatoryDetails_theThrowException() {
         SaveUserRequest request = new SaveUserRequest();
         try {
@@ -53,13 +61,32 @@ class AwesomeChatApplicationTests {
     }
 
     @Test
-    void getUser_whenExistingAccount_thenReturnAccount() {
-        User user = createUser();
-        User response = userService.getUser(user.getId());
+    void getUser_whenNonExistingAccount_thenThrowNotFoundException() {
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(0));
     }
 
     @Test
-    void getUser_whenNonExistingAccount_thenThrowNotFoundException() {
+    void updateUser_whenValidDetailsChange_thenUpdatingUserAccount(){
+        User user = createUser();
+        SaveUserRequest request = new SaveUserRequest();
+        request.setName(user.getName());
+        request.setLoginName(user.getLoginName());
+        request.setAge(user.getAge());
+        request.setGender(user.getGender());
+        request.setImageURL(user.getImageURL());
+        User updateUser = userService.updateUser(user.getId(),request);
+        assertThat(updateUser, notNullValue());
+        assertThat(updateUser.getId(), is(user.getId()));
+        assertThat(updateUser.getName(), is(user.getName()));
+        assertThat(updateUser.getLoginName(), is(user.getLoginName()));
+        assertThat(updateUser.getAge(), is(user.getAge()));
+        assertThat(updateUser.getGender(), is(user.getGender()));
+        assertThat(updateUser.getImageURL(), is(user.getImageURL()));
+    }
+    @Test
+    void deleteUser_whenExistingUserAccount_theUserAccountDoseNotExistAnymore(){
+        User user = createUser();
+        userService.deleteUser(user.getId());
         Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(0));
     }
 }
