@@ -1,24 +1,41 @@
 package org.fasttrackit.awesomechat.service;
-
+import lombok.extern.slf4j.Slf4j;
 import org.fasttrackit.awesomechat.domain.User;
+import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.persistance.UserRepository;
 import org.fasttrackit.awesomechat.transfer.SaveUserRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+
+@Slf4j
 @Service
 public class UserService {
 
-    private final UserRepository userRepository ;
-
-    public UserService(UserRepository userRepository){this.userRepository = userRepository;}
-        public User createUser (SaveUserRequest request){
-            System.out.println("Creating new account: " + request);
-            User user = new User();
-            user.setLoginName(request.getLoginName());
-            user.setName(request.getName());
-            user.setAge(request.getAge());
-            user.setGender(request.getGender());
-            user.setImageURL(request.getImageURL());
-            return userRepository.save(user);
+    private final UserRepository userRepository;
+    @Autowired
+    public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
+    public User createUser(SaveUserRequest request) {
+//            System.out.println("Creating new account: " + request);
+        log.info("Creating new user{}", request);
+        User user = User.builder()
+                .loginName(request.getLoginName())
+                .age(request.getAge())
+                .name(request.getName())
+                .gender(request.getGender())
+                .imageURL(request.getImageURL())
+                .build();
+        return userRepository.save(user);
+    }
+    public User getUser(long id){
+        log.info("Finding user{}" , id);
+//        Lambda
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User" + id + "not found"));
+
+    }
+
 }

@@ -1,10 +1,8 @@
 package org.fasttrackit.awesomechat.transfer;
-
 import javax.validation.constraints.NotNull;
 
 public class SaveUserRequest {
-
-    private String loginName;
+private String loginName;
     @NotNull
     private String name;
     @NotNull
