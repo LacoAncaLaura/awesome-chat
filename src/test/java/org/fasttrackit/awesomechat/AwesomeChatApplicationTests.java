@@ -87,6 +87,6 @@ class AwesomeChatApplicationTests {
     void deleteUser_whenExistingUserAccount_theUserAccountDoseNotExistAnymore(){
         User user = createUser();
         userService.deleteUser(user.getId());
-        Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(1));
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(0));
     }
 }
