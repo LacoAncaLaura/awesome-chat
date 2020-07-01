@@ -22,7 +22,7 @@ class AwesomeChatApplicationTests {
     private UserService userService;
 
     @Test
-    void createUser_whenValidRequest_thenReturnCreatedProduct() {
+    void createUser_whenValidRequest_thenReturnCreatedUser() {
         createUser();
     }
 
@@ -45,7 +45,7 @@ class AwesomeChatApplicationTests {
     }
 
     @Test
-    void getUser_whenExistingAccount_thenReturnAccount() {
+    void getUser_whenExistingUser_thenReturnUser() {
         User user = createUser();
         User response = userService.getUser(user.getId());
     }
@@ -61,12 +61,12 @@ class AwesomeChatApplicationTests {
     }
 
     @Test
-    void getUser_whenNonExistingAccount_thenThrowNotFoundException() {
+    void getUser_whenNonExistingUser_thenThrowNotFoundException() {
         Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(0));
     }
 
     @Test
-    void updateUser_whenValidDetailsChange_thenUpdatingUserAccount(){
+    void updateUser_whenValidDetailsChange_thenUpdatingUserUser(){
         User user = createUser();
         SaveUserRequest request = new SaveUserRequest();
         request.setName(user.getName());
@@ -84,7 +84,7 @@ class AwesomeChatApplicationTests {
         assertThat(updateUser.getImageURL(), is(user.getImageURL()));
     }
     @Test
-    void deleteUser_whenExistingUserAccount_theUserAccountDoseNotExistAnymore(){
+    void deleteUser_whenExistingUserUser_theUserDoseNotExistAnymore(){
         User user = createUser();
         userService.deleteUser(user.getId());
         Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(0));
