@@ -4,6 +4,9 @@ import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.persistance.UserRepository;
 import org.fasttrackit.awesomechat.transfer.SaveUserRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +16,14 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class UserService {
-
+    private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     @Autowired
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
     public User createUser(SaveUserRequest request) {
 //            System.out.println("Creating new account: " + request);
-        log.info("Creating new user{}", request);
+        LOGGER.info("Creating new user{}", request);
         User user = User.builder()
                 .loginName(request.getLoginName())
                 .age(request.getAge())
@@ -31,19 +34,20 @@ public class UserService {
         return userRepository.save(user);
     }
     public User getUser(long id){
-        log.info("Finding user{}" , id);
+        LOGGER.info("Finding user{}" , id);
 //        Lambda
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User" + id + "not found"));
 
     }
     public User updateUser(long id, SaveUserRequest request){
-        log.info("Updating userAccount{}: {}", id , request);
+        LOGGER.info("Updating userAccount{}: {}", id , request);
         User user = getUser(id);
+        BeanUtils.copyProperties(request, user);
         return userRepository.save(user);
     }
     public void deleteUser(long id){
-        log.info("Deleting product{}" , id);
+        LOGGER.info("Deleting product{}" , id);
         userRepository.deleteById(id);
     }
 }
