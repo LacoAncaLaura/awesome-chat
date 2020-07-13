@@ -1,9 +1,8 @@
-package org.fasttrackit.awesomechat.service;
+package org.fasttrackit.awesomechat.redis;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.fasttrackit.awesomechat.persistance.ChatRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
