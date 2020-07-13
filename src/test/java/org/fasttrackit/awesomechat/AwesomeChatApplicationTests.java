@@ -31,7 +31,7 @@ class AwesomeChatApplicationTests {
         request.setName("George");
         request.setLoginName("Gigi");
         request.setAge(20);
-        request.setGender(0);
+        request.setGender("Male");
         request.setImageURL("download.jpg");
         User user = userService.createUser(request);
         assertThat(user, notNullValue());

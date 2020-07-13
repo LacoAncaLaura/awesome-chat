@@ -1,4 +1,6 @@
 package org.fasttrackit.awesomechat.service;
+import lombok.Builder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
@@ -10,9 +12,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 
+@Builder
+@Data
 @Slf4j
 @Service
 public class UserService {
@@ -47,7 +50,7 @@ public class UserService {
         return userRepository.save(user);
     }
     public void deleteUser(long id){
-        LOGGER.info("Deleting product{}" , id);
+        LOGGER.info("Deleting user{}" , id);
         userRepository.deleteById(id);
     }
 }
