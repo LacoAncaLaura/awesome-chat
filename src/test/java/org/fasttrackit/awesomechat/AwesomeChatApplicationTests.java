@@ -3,7 +3,7 @@ package org.fasttrackit.awesomechat;
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.service.UserService;
-import org.fasttrackit.awesomechat.transfer.SaveUserRequest;
+import org.fasttrackit.awesomechat.transfer.CreateUserRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class AwesomeChatApplicationTests {
     }
 
     private User createUser() {
-        SaveUserRequest request = new SaveUserRequest();
+        CreateUserRequest request = new CreateUserRequest();
         request.setName("George");
         request.setLoginName("Gigi");
         request.setAge(20);
@@ -52,7 +52,7 @@ class AwesomeChatApplicationTests {
 
     @Test
     void createUser_whenMissingMandatoryDetails_theThrowException() {
-        SaveUserRequest request = new SaveUserRequest();
+        CreateUserRequest request = new CreateUserRequest();
         try {
             User user = userService.createUser(request);
         } catch (Exception e) {
@@ -68,7 +68,7 @@ class AwesomeChatApplicationTests {
     @Test
     void updateUser_whenValidDetailsChange_thenUpdatingUserUser(){
         User user = createUser();
-        SaveUserRequest request = new SaveUserRequest();
+        CreateUserRequest request = new CreateUserRequest();
         request.setName(user.getName());
         request.setLoginName(user.getLoginName());
         request.setAge(user.getAge());

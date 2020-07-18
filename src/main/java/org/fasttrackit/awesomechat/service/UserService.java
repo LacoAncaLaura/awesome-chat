@@ -5,14 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.persistance.UserRepository;
-import org.fasttrackit.awesomechat.transfer.SaveUserRequest;
+import org.fasttrackit.awesomechat.transfer.CreateUserRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 @Builder
 @Data
@@ -24,7 +22,7 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
-    public User createUser(SaveUserRequest request) {
+    public User createUser(CreateUserRequest request) {
 //            System.out.println("Creating new account: " + request);
         LOGGER.info("Creating new user{}", request);
         User user = User.builder()
@@ -43,7 +41,7 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User" + id + "not found"));
 
     }
-    public User updateUser(long id, SaveUserRequest request){
+    public User updateUser(long id, CreateUserRequest request){
         LOGGER.info("Updating userAccount{}: {}", id , request);
         User user = getUser(id);
         BeanUtils.copyProperties(request, user);

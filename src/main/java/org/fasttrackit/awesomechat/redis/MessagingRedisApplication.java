@@ -1,8 +1,5 @@
 package org.fasttrackit.awesomechat.redis;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -17,17 +14,14 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.Receiver;
-@Builder
-@NoArgsConstructor
-@Data
 @SpringBootApplication
-public class MessagingRedisApplicationService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MessagingRedisApplicationService.class);
+public class MessagingRedisApplication {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessagingRedisApplication.class);
     @Bean
-    RedisMessageListenerContainer container(RedisMessageListenerContainer connectionFactory, MessageListenerAdapter listenerAdapter){
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter){
 
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-        container.setConnectionFactory((RedisConnectionFactory) connectionFactory);
+        container.setConnectionFactory(connectionFactory);
         container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
 
         return container;
@@ -42,9 +36,7 @@ public class MessagingRedisApplicationService {
         return new Receiver() {
             @Override
             public void send(MidiMessage message, long timeStamp) {
-
             }
-
             @Override
             public void close() {
 
@@ -59,7 +51,7 @@ public class MessagingRedisApplicationService {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ApplicationContext ctx = SpringApplication.run(MessagingRedisApplicationService.class, args);
+        ApplicationContext ctx = SpringApplication.run(MessagingRedisApplication.class, args);
 
         StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
         Receiver receiver = ctx.getBean(Receiver.class);

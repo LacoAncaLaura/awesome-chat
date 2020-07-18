@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebSocketEventListener {
     public static final Logger LOGGER = LoggerFactory.getLogger(WebSocketEventListener.class);
-    @Autowired
+//    @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
     @EventListener
