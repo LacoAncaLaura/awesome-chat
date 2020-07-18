@@ -1,9 +1,7 @@
 package org.fasttrackit.awesomechat.redis;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,8 +16,6 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.Receiver;
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @SpringBootApplication
 public class MessagingRedisApplication {
