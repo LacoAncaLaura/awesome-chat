@@ -1,11 +1,10 @@
-package org.fasttrackit.awesomechat.controller;
+package org.fasttrackit.awesomechat.configuration;
 
 import io.lettuce.core.event.connection.ConnectionEvent;
 import io.lettuce.core.event.connection.DisconnectedEvent;
 import org.fasttrackit.awesomechat.domain.Chat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;

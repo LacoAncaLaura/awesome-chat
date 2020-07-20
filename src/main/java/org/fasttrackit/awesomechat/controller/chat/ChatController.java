@@ -1,4 +1,4 @@
-package org.fasttrackit.awesomechat.controller;
+package org.fasttrackit.awesomechat.controller.chat;
 
 import org.fasttrackit.awesomechat.domain.Chat;
 import org.springframework.messaging.handler.annotation.MessageMapping;

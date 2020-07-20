@@ -1,18 +1,14 @@
 package org.fasttrackit.awesomechat.controller;
 
-import lombok.Builder;
-import lombok.Data;
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.service.UserService;
-import org.fasttrackit.awesomechat.transfer.CreateUserRequest;
+import org.fasttrackit.awesomechat.transfer.user.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
-@Builder
-@Data
 @CrossOrigin
 @RestController
 @RequestMapping("/users")

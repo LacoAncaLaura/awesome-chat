@@ -1,20 +1,17 @@
 package org.fasttrackit.awesomechat.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+
 import org.fasttrackit.awesomechat.domain.Chat;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.persistance.ChatRepository;
-import org.fasttrackit.awesomechat.transfer.CreateChatRequest;
+import org.fasttrackit.awesomechat.transfer.chat.CreateChatRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Data
-@Slf4j
 @Service
 public class ChatService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatService.class);

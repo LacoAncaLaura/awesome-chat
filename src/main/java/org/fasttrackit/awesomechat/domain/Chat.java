@@ -5,17 +5,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
 public class Chat {
     @Id
     private String sender;
+    @NotNull
     private MessageType type;
+    @NotNull
     private String content;
 
 

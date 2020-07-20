@@ -3,7 +3,7 @@ package org.fasttrackit.awesomechat;
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.service.UserService;
-import org.fasttrackit.awesomechat.transfer.CreateUserRequest;
+import org.fasttrackit.awesomechat.transfer.user.CreateUserRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
