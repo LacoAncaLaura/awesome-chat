@@ -1,4 +1,5 @@
 package org.fasttrackit.awesomechat.service;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -12,26 +13,22 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Builder
 @Data
 @Slf4j
 @Service
 public class UserService {
     private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
     @Autowired
-    public UserService(UserRepository userRepository) {this.userRepository = userRepository;
+    public UserService(UserRepository userRepository,ObjectMapper objectMapper) {
+        this.userRepository = userRepository;
+        this.objectMapper = objectMapper;
     }
     public User createUser(CreateUserRequest request) {
 //            System.out.println("Creating new account: " + request);
         LOGGER.info("Creating new user{}", request);
-        User user = User.builder()
-                .loginName(request.getLoginName())
-                .age(request.getAge())
-                .name(request.getName())
-                .gender(request.getGender())
-                .imageURL(request.getImageURL())
-                .build();
+        User user = objectMapper.convertValue(request,User.class);
         return userRepository.save(user);
     }
     public User getUser(long id){
