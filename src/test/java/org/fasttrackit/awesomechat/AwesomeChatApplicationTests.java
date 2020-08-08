@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.validation.ConstraintViolationException;
 
@@ -16,6 +18,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 @SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@ActiveProfiles("test")
 class AwesomeChatApplicationTests {
 
     @Autowired
@@ -29,7 +33,7 @@ class AwesomeChatApplicationTests {
     private User createUser() {
         CreateUserRequest request = new CreateUserRequest();
         request.setName("George");
-        request.setLoginName("Gigi");
+        request.setLoginName("Gigi" + System.currentTimeMillis());
         request.setAge(20);
         request.setGender("Male");
         request.setImageURL("download.jpg");
@@ -66,7 +70,7 @@ class AwesomeChatApplicationTests {
     }
 
     @Test
-    void updateUser_whenValidDetailsChange_thenUpdatingUserUser(){
+    void updateUser_whenValidDetailsChange_thenUpdatingUser(){
         User user = createUser();
         CreateUserRequest request = new CreateUserRequest();
         request.setName(user.getName());
@@ -74,9 +78,8 @@ class AwesomeChatApplicationTests {
         request.setAge(user.getAge());
         request.setGender(user.getGender());
         request.setImageURL(user.getImageURL());
-        User updateUser = userService.updateUser(user.getId(),request);
+        User updateUser = userService.updateUser(user.getId(),  request);
         assertThat(updateUser, notNullValue());
-        assertThat(updateUser.getId(), is(user.getId()));
         assertThat(updateUser.getName(), is(user.getName()));
         assertThat(updateUser.getLoginName(), is(user.getLoginName()));
         assertThat(updateUser.getAge(), is(user.getAge()));
