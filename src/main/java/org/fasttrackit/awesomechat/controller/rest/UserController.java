@@ -1,4 +1,4 @@
-package org.fasttrackit.awesomechat.controller;
+package org.fasttrackit.awesomechat.controller.rest;
 
 import org.fasttrackit.awesomechat.domain.User;
 import org.fasttrackit.awesomechat.service.UserService;

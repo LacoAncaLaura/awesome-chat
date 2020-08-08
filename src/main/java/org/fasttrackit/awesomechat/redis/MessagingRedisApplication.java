@@ -19,20 +19,23 @@
 //@Data
 //@SpringBootApplication
 //public class MessagingRedisApplication {
-//    private static final Logger LOGGER = LoggerFactory.getLogger(MessagingRedisApplication.class);
-//    @Bean
-//    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter){
+//    private static final Logger LOGGER = LoggerFactory.getLogger(MessagingRedisApplication.class,MessageListenerAdapter listenerAdapter);
 //
-//        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-//        container.setConnectionFactory(connectionFactory);
-//        container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
-//
-//        return container;
-//    }
 //    @Bean
 //    MessageListenerAdapter listenerAdapter(Receiver receiver) {
 //        return new MessageListenerAdapter(receiver, "receiveMessage");
 //    }
+//    @Bean
+//    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory){
+//
+//        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+//        container.setConnectionFactory(connectionFactory);
+//        container.addMessageListener(listenerAdapter(), new PatternTopic("chat"));
+//
+//        return container;
+//    }
+//
+//
 //
 //    @Bean
 //    Receiver receiver() {
