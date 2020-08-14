@@ -92,7 +92,7 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var dismiss = '[data-dismiss="alert"]'
-  var Alert   = function (el) {
+   var Alert   = function (el) {
     $(el).on('click', dismiss, this.close)
   }
 
