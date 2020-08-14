@@ -37,9 +37,6 @@ public abstract class WebSocketConfig implements WebSocketMessageBrokerConfigure
                 .setClientPasscode("guest");
 
         config.setApplicationDestinationPrefixes("/app");
-
-
-
     }
 }
 
