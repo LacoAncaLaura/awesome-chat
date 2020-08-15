@@ -32,7 +32,7 @@ public abstract class WebSocketConfig implements WebSocketMessageBrokerConfigure
         config.enableSimpleBroker("/topic");
         config.enableStompBrokerRelay("/topic")
                 .setRelayHost("localhost")
-                .setRelayPort(8086)
+                .setRelayPort(63342)
                 .setClientLogin("guest")
                 .setClientPasscode("guest");
 
