@@ -34,10 +34,10 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User" + id + "not found"));
 
     }
-    public User updateUser(long id, CreateUserRequest request){
-        LOGGER.info("Updating userAccount{}: {}", id , request);
+    public User updateUser(long id){
+        LOGGER.info("Updating userAccount{}: {}", id);
         User user = getUser(id);
-        BeanUtils.copyProperties(request, user);
+        BeanUtils.copyProperties(id, user);
         return userRepository.save(user);
     }
     public void deleteUser(long id){

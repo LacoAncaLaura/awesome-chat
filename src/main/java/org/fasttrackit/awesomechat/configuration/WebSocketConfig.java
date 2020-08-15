@@ -11,20 +11,11 @@ import org.springframework.web.socket.config.annotation.*;
 @EnableWebSocketMessageBroker
 public abstract class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-//    @Override
-//    public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-//        webSocketHandlerRegistry.addHandler(new AbstractWebSocketHandler() {
-//            @Override
-//            public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-//                super.afterConnectionEstablished(session);
-//            }
-//        }, "/web-socket");
-//    }
 
     //Simple Text Oriented Messaging Protocol (STOMP)
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/gs-guide-websocket").withSockJS();
+        registry.addEndpoint("/ws").withSockJS();
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config){
@@ -32,7 +23,7 @@ public abstract class WebSocketConfig implements WebSocketMessageBrokerConfigure
         config.enableSimpleBroker("/topic");
         config.enableStompBrokerRelay("/topic")
                 .setRelayHost("localhost")
-                .setRelayPort(8086)
+                .setRelayPort(63342)
                 .setClientLogin("guest")
                 .setClientPasscode("guest");
 

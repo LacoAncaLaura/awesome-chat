@@ -78,7 +78,7 @@ class AwesomeChatApplicationTests {
         request.setAge(user.getAge());
         request.setGender(user.getGender());
         request.setImageURL(user.getImageURL());
-        User updateUser = userService.updateUser(user.getId(),  request);
+        User updateUser = userService.updateUser(user.getId());
         assertThat(updateUser, notNullValue());
         assertThat(updateUser.getName(), is(user.getName()));
         assertThat(updateUser.getLoginName(), is(user.getLoginName()));
