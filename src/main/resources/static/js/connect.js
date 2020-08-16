@@ -7,8 +7,10 @@ window.Chat = {
         $.ajax({
             url: Chat.API_URL + "/chats",
             method: "POST",
+            data:JSON.stringify({
+                "sender":"sender loginName?",
+                "content":"content"})
         }).done(function (response) {
-
             console.log(response)
 
         })

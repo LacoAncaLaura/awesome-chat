@@ -23,12 +23,10 @@ public class ChatController {
         put("loginName", chat.getSender());
         return chat;
     }
-
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Chat sendMessage(@Payload Chat chat) {
         return chat;
     }
-
 
 }

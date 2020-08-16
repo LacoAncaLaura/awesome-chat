@@ -6,6 +6,7 @@ import org.fasttrackit.awesomechat.domain.Chat;
 import org.fasttrackit.awesomechat.exception.ResourceNotFoundException;
 import org.fasttrackit.awesomechat.persistance.ChatRepository;
 import org.fasttrackit.awesomechat.transfer.chat.CreateChatRequest;
+import org.fasttrackit.awesomechat.transfer.chat.SaveChatRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +27,7 @@ public class ChatService {
         this.objectMapper = objectMapper;
     }
 
-    public Chat createChat(CreateChatRequest request) {
+    public Chat createChat(SaveChatRequest request) {
         LOGGER.info("Creating new chat{}", request);
         Chat chat = objectMapper.convertValue(request,Chat.class);
         return chatRepository.save(chat);
