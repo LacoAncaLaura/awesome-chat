@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @CrossOrigin
 @RestController
 @RequestMapping("/chats")
@@ -21,14 +23,28 @@ public class ChatRestController {
 
     @PostMapping
     public ResponseEntity<Chat> createChats(CreateChatRequest request) {
+
         Chat chat = chatService.createChat(request);
         return new ResponseEntity<>(chat, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id")
-    public ResponseEntity<Chat> getChat(@PathVariable String sender) {
-        Chat chat = chatService.getChat(sender);
+    @GetMapping("/{userId}")
+    public ResponseEntity<Chat> getChat(@PathVariable long userId) {
+
+        Chat chat = chatService.getChat(userId);
         return new ResponseEntity<>(chat, HttpStatus.OK);
     }
-}
+    @PutMapping("/{id}")
+    public ResponseEntity<Chat> updateChat(@PathVariable long id) {
+        Chat chat = chatService.getChat(id);
+        return new ResponseEntity<>(chat, HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Chat> deleteChat(@PathVariable long id) {
+        return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+    }}
+
+
+
+
 

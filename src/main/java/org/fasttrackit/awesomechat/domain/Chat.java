@@ -17,10 +17,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Chat {
     @Id
+    private long userId;
+
     private String sender;
-    @NotNull
+
     private MessageType type;
-    @NotNull
+
     private String content;
 
 

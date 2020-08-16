@@ -1,9 +1,10 @@
-server.port: 8088
-spring:
-  jpa:
-    hibernate.ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-  datasource:
-    url: jdbc:mysql://localhost:3306/awesome-chat?serverTimezone=UTC
-    username: awesome-chat
-    password: awesome-chat
+#server:
+#port: 8088
+#spring:
+#  jpa:
+#    hibernate.ddl-auto: update
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/awesome-chat?serverTimezone=UTC
+#    username: awesome-chat
+#    password: awesome-chat

@@ -2,11 +2,11 @@ window.Chat = {
 
     API_URL: "http://localhost:8088",
 
-    getChats: function () {
+    createChats: function () {
 
         $.ajax({
-            method: "GET",
-            url: Chat.API_URL + "/chats"
+            url: Chat.API_URL + "/chats",
+            method: "POST",
         }).done(function (response) {
 
             console.log(response)
@@ -14,4 +14,4 @@ window.Chat = {
         })
     }
 };
-Chat.getChats();
+Chat.createChats();

@@ -33,22 +33,22 @@ public class ChatService {
 
     }
 
-    public Chat getChat(String sender) {
-        LOGGER.info("Find sender{}", sender);
-        return chatRepository.findById(sender)
-                .orElseThrow(() -> new ResourceNotFoundException("Chat " + sender + "not found"));
+    public Chat getChat(long userId) {
+        LOGGER.info("Find userId{}", userId);
+        return chatRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Chat " + userId + "not found"));
     }
 
-    public Chat updateChat(String sender, CreateChatRequest request) {
-        LOGGER.info("Updating chat {}: {} ", sender, request);
-        Chat chat = getChat(sender);
+    public Chat updateChat(long userId, CreateChatRequest request) {
+        LOGGER.info("Updating chat {}: {} ", userId, request);
+        Chat chat = getChat(userId);
         BeanUtils.copyProperties(request, chat);
         return chatRepository.save(chat);
     }
 
-    public void deleteChat(String sender) {
-        LOGGER.info("Deleting chat{}", sender);
-        chatRepository.deleteById(sender);
+    public void deleteChat(long userId) {
+        LOGGER.info("Deleting chat{}", userId);
+        chatRepository.deleteById(userId);
     }
 
 }
