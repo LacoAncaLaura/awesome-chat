@@ -1,19 +1,21 @@
-window.Chat = {
+window.User = {
 
     API_URL: "http://localhost:8088",
 
-    createChats: function () {
+    createUser: function () {
 
         $.ajax({
-            url: Chat.API_URL + "/chats",
+            url: User.API_URL + "/users",
             method: "POST",
-            data:JSON.stringify({
-                "sender":"George",
-                "content":"How are you?"})
+            data: JSON.stringify({
+                "name": "George",
+                "age": 18,
+                "gender": "male"
+            })
         }).done(function (response) {
             console.log(response)
 
         })
     }
-};
-Chat.createChats();
+},
+User.createUser();
