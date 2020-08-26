@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Data
 public class CreateChatRequest {
-
-    private String sender;
     @NotNull
+    private String sender;
     private Chat.MessageType type;
+
     @NotNull
     private String content;
 }
